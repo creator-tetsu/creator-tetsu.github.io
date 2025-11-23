@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI クリエイター Tetsu | Portfolio</title>
+    <meta name="description" content="AI × 創作 × 思考整理術をテーマに活動中。AIクリエイター Tetsuのポートフォリオサイトです。">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent-color: #00bcd4;
+            --accent-hover: #00acc1;
+            --spacing-unit: 1rem;
+            --container-width: 900px;
+            --font-main: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #121212 70%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Sections General */
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid #333;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 0.5rem auto 0;
+        }
+
+        /* About Section */
+        .about-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Cards Grid (Works & Projects) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--surface-color);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.2em;
+            position: relative;
+        }
+
+        .card li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            background-color: #333;
+            color: #ccc;
+        }
+
+        /* Links Section */
+        .links-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .link-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--surface-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 30px;
+            color: var(--text-primary);
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .link-btn:hover {
+            background-color: var(--accent-color);
+            color: #000;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #0a0a0a;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1>AI クリエイター Tetsu</h1>
+            <p>AI × 創作 × 思考整理術をテーマに活動中</p>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About</h2>
+            <div class="about-content">
+                <p>
+                    AI技術を活用したクリエイティブ活動と、効率的な思考整理術を探求しています。<br>
+                    テクノロジーと人間の創造性を融合させ、新しい表現の形や知的生産性の向上を目指して発信を続けています。<br>
+                    複雑な情報をシンプルに整理し、実践的なノウハウとして共有することを大切にしています。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Works Section -->
+    <section id="works">
+        <div class="container">
+            <h2>Works</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>クリエイティブ活動</h3>
+                    <p>オリジナルAI楽曲や画像作品を制作・公開しています。</p>
+                    <br>
+                    <ul>
+                        <li>note (AIクリエイターTetsu) にて作品解説</li>
+                        <li>YouTube にてMVや楽曲を公開</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>情報発信・執筆</h3>
+                    <p>複数のプラットフォームで専門テーマごとに情報を発信しています。</p>
+                    <br>
+                    <ul>
+                        <li><strong>AI×脳科学ラボ (note)</strong>: 別テーマの深掘り記事</li>
+                        <li><strong>Threads</strong>: 心理学・脳科学の実践的活用法</li>
+                        <li><strong>ブログ</strong>: AI活用・思考整理術について</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>バイブコーディング Webツール制作 <span class="status-badge">準備中</span></h3>
+                    <p>直感的な操作で利用できるWebツールの開発プロジェクト。</p>
+                </div>
+                <div class="card">
+                    <h3>GitHub Pages ポートフォリオ <span class="status-badge">公開中</span></h3>
+                    <p>本サイトの構築・運用プロジェクト。シンプルかつ高速な静的サイトとして実装。</p>
+                </div>
+                <div class="card">
+                    <h3>AI活用ブログ <span class="status-badge">準備中</span></h3>
+                    <p>新しい視点でAI技術を読み解く読み物サイトの立ち上げ。</p>
+                </div>
+                <div class="card">
+                    <h3>第二の脳構築 (Obsidian × Cursor) <span class="status-badge">準備中</span></h3>
+                    <p>個人的な知識管理システム（PKM）の構築とノウハウの体系化。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Links Section -->
+    <section id="links">
+        <div class="container">
+            <h2>Links</h2>
+            <ul class="links-list">
+                <li><a href="#" class="link-btn" target="_blank" rel="noopener noreferrer">note</a></li>
+                <li><a href="#" class="link-btn" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+                <li><a href="#" class="link-btn" target="_blank" rel="noopener noreferrer">Threads</a></li>
+                <li><a href="#" class="link-btn" target="_blank" rel="noopener noreferrer">Blog</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-content">
+                <p>お問い合わせはSNSのDM、または以下のメールリンクよりお願いいたします。</p>
+                <a href="mailto:contact@example.com" class="link-btn">Send Email</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AI Creator Tetsu. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
