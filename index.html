@@ -1,49 +1,416 @@
 <!DOCTYPE html>
-<html lang="ja" class="scroll-smooth">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Creator Tetsu | Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Noto Sans JP"', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            dark: '#05050A',
-                            navy: '#0f172a',
-                            accent: '#38bdf8'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #000;
-            color: #fff;
-        }
-    </style>
-<script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+  <meta charset="UTF-8">
+  <title>AI Creator Tetsu | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --bg-main: #020617;
+      --bg-card: #020817;
+      --brand-accent: #38bdf8;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "Noto Sans JP", sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #020617 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 100% - 3rem);
+      margin: 0 auto;
+    }
+
+    /* ---------- HERO ---------- */
+
+    header {
+      padding: 64px 0 80px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.8rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero {
+      text-align: center;
+      padding-top: 24px;
+    }
+
+    .hero-title-ja {
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      letter-spacing: 0.12em;
+      margin: 0 0 12px;
+    }
+
+    .hero-title-en {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 500;
+      margin: 0 0 24px;
+      color: #cbd5f5;
+    }
+
+    .hero-lead {
+      max-width: 640px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .hero-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.9rem;
+      border-radius: 999px;
+      background: #e5f3ff;
+      color: #0f172a;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.55);
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out,
+                  background 0.15s ease-out;
+    }
+
+    .hero-button span.arrow {
+      font-size: 1.1rem;
+    }
+
+    .hero-button:hover {
+      transform: translateY(-2px);
+      background: white;
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.75);
+    }
+
+    /* ---------- SECTION TITLE ---------- */
+
+    section {
+      padding: 40px 0 64px;
+    }
+
+    .section-heading {
+      margin-bottom: 24px;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--brand-accent);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin: 0;
+    }
+
+    .section-caption {
+      margin-top: 4px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---------- WORKS GRID ---------- */
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    @media (max-width: 960px) {
+      .works-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .work-card {
+      background: radial-gradient(circle at top left, #0f172a, #020617 60%);
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.75);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .work-thumb-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-thumb {
+      width: 100%;
+      display: block;
+      transform-origin: center;
+      transition: transform 0.4s ease-out, filter 0.4s ease-out;
+    }
+
+    .work-card:hover .work-thumb {
+      transform: scale(1.06);
+      filter: brightness(1.05);
+    }
+
+    .work-body {
+      padding: 18px 20px 18px;
+    }
+
+    .work-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      margin-bottom: 6px;
+    }
+
+    .work-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+
+    .work-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0 0 16px;
+      line-height: 1.6;
+    }
+
+    .work-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--brand-accent);
+    }
+
+    .work-link span.icon {
+      font-size: 0.95rem;
+    }
+
+    /* ---------- FOOTER / LINKS ---------- */
+
+    .links-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .link-chip {
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      transition: background 0.15s ease-out, color 0.15s ease-out,
+                  border-color 0.15s ease-out, transform 0.15s ease-out;
+    }
+
+    .link-chip:hover {
+      background: #0f172a;
+      border-color: var(--brand-accent);
+      color: #e5f3ff;
+      transform: translateY(-1px);
+    }
+
+    .contact-box {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.8);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .contact-mail {
+      color: var(--brand-accent);
+      font-weight: 500;
+    }
+
+    footer {
+      border-top: 1px solid rgba(30, 64, 175, 0.6);
+      padding: 18px 0 26px;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body>
-    <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+  <header>
+    <div class="container">
+      <div class="hero">
+        <div class="hero-badge">
+          <span>AI CREATOR TETSU</span>
+        </div>
+
+        <h1 class="hero-title-ja">AI × 創作 × 思考整理</h1>
+        <p class="hero-title-en">The Portfolio</p>
+
+        <p class="hero-lead">
+          テクノロジーと人間の創造性を掛け合わせ、<br>
+          オリジナル楽曲・ビジュアル・思考整理ノウハウを探求する実験室。
+        </p>
+
+        <a href="#works" class="hero-button">
+          <span>Worksを見る</span>
+          <span class="arrow">↓</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- WORKS -->
+  <section id="works">
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-label">Selected Works</div>
+        <h2 class="section-title">最新のプロジェクトと実験記録</h2>
+        <p class="section-caption">
+          「音楽・ビジュアル・思考整理」の3つの角度から、現在進行形のアウトプットをピックアップ。
+        </p>
+      </div>
+
+      <div class="works-grid">
+        <!-- 1: Music -->
+        <article class="work-card">
+          <div class="work-thumb-wrapper">
+            <img
+              src="ai_creator_tetsu_A_music_production_desk_in_a_brightly_lit_stud_0fd468ab-95d0-4eed-97c7-92d18db580a1.png"
+              alt="AI Music Production Desk"
+              class="work-thumb"
+            >
+          </div>
+          <div class="work-body">
+            <div class="work-tag">Music / Sound</div>
+            <h3 class="work-title">AI Music Composition</h3>
+            <p class="work-text">
+              Suno AI などを活用した実験的楽曲制作プロジェクト。
+              「物語のあるシティポップ」「ホラーソング」まで、AIと人の感情をブレンドしたサウンドを検証中。
+            </p>
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="work-link">
+              <span>MV・楽曲を開く</span>
+              <span class="icon">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 2: Visual -->
+        <article class="work-card">
+          <div class="work-thumb-wrapper">
+            <img
+              src="ai_creator_tetsu_The_interior_of_a_modern_art_gallery._Several__e375f149-cd3e-4d67-aa36-013e44d1ac3d.png"
+              alt="Generative Visual Art"
+              class="work-thumb"
+            >
+          </div>
+          <div class="work-body">
+            <div class="work-tag">Visual Art</div>
+            <h3 class="work-title">Generative Visual Stories</h3>
+            <p class="work-text">
+              Midjourney 等で生成したビジュアルを軸に、AIキャラクターや世界観を構築。
+              「AFTERGLOW TOKYO」など、物語性のあるビジュアル実験を進行中。
+            </p>
+            <a href="https://note.com/" target="_blank" rel="noopener" class="work-link">
+              <span>ビジュアル作品を見る</span>
+              <span class="icon">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 3: Writing / Thinking -->
+        <article class="work-card">
+          <div class="work-thumb-wrapper">
+            <img
+              src="ai_creator_tetsu_A_cozy_workspace_desk._An_open_notebook_filled_3ab6d935-fbbc-49cf-8e7f-77bbf841a5b8.png"
+              alt="Thinking Process Note"
+              class="work-thumb"
+            >
+          </div>
+          <div class="work-body">
+            <div class="work-tag">Writing / Thinking</div>
+            <h3 class="work-title">Thinking Process Notes</h3>
+            <p class="work-text">
+              中高年のための AI 活用・メンタルブロック・思考整理術を、
+              実体験ベースで言語化したノート。note やブログ記事の「元データ」にもなっています。
+            </p>
+            <a href="https://creator-tetsu.github.io" class="work-link">
+              <span>記事・ノートを読む</span>
+              <span class="icon">↗</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKS & CONTACT -->
+  <section>
+    <div class="container">
+      <div class="section-heading">
+        <div class="section-label">Links & Contact</div>
+        <h2 class="section-title">発信プラットフォーム</h2>
+        <p class="section-caption">
+          それぞれのメディアで役割を分けながら、AI と創作と思考整理のログを残しています。
+        </p>
+      </div>
+
+      <div class="links-row">
+        <a href="https://note.com/" target="_blank" rel="noopener" class="link-chip">note</a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="link-chip">YouTube</a>
+        <a href="https://www.threads.net/" target="_blank" rel="noopener" class="link-chip">Threads</a>
+        <a href="https://dct-biz.com/" target="_blank" rel="noopener" class="link-chip">Blog</a>
+      </div>
+
+      <div class="contact-box">
+        お仕事やコラボのご相談は、各種 SNS の DM もしくはメールにてご連絡ください。<br>
+        <span class="contact-mail">creator-tetsu@example.com</span>（仮）  
+        ※実際のアドレスに書き換えてください。
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © AI Creator Tetsu. All rights reserved.
+  </footer>
 </body>
 </html>
